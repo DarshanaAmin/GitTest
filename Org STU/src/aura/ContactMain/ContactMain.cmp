@@ -1,0 +1,25 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" >
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">Lightning Contacts</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <!--Embedded child components -->
+                <c:SearchBar />
+                <c:ContactList />
+            </div>
+            
+            <div class="col-sm-8">
+                <!--Embedded child component -->
+                <c:ContactDetails />
+            </div>
+        </div>
+    </div>
+    
+</aura:component>

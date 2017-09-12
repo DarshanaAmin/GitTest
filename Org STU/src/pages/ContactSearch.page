@@ -1,0 +1,80 @@
+<apex:page controller="ContactSearchController" sidebar="false">
+
+  <apex:form >
+  <apex:pageMessages id="errors" />
+
+  <apex:pageBlock title="Contact Search!" mode="edit">
+
+  <table width="100%" border="0">
+  <tr>  
+    <td width="200" valign="top">
+
+      <apex:pageBlock title="Search" mode="edit" id="criteria">
+
+      <script type="text/javascript">
+      function doSearch() {
+        searchData(
+          document.getElementById("firstName").value);
+      }
+      </script> 
+
+      <apex:actionFunction name="searchData" action="{!runSearch}" rerender="results,errors">
+          <apex:param name="firstName" value="" />
+          
+      </apex:actionFunction>
+
+      <table cellpadding="2" cellspacing="2">
+      <tr>
+        <td style="font-weight:bold;">Name<br/>
+        <input type="text" id="firstName" onkeyup="doSearch();"/>
+        </td>
+      </tr>
+      
+          
+           
+      </table>
+
+      </apex:pageBlock>
+
+    </td>
+    <td valign="top">
+
+    <apex:pageBlock mode="edit" id="results">
+
+        <apex:pageBlockTable value="{!contacts}" var="contact">
+
+            <apex:column headerValue="First Name" >
+               
+                    <apex:commandLink value="{!contact.firstName}" action="{!showDetails}"  rerender="results,details">
+                        <apex:param name="detail" value="{!contact.firstName}" assignTo="{!detail}" />
+                    </apex:commandLink>
+                           </apex:column>
+			<apex:column headerValue="Last Name">
+                
+                
+                <apex:outputField value="{!contact.lastName}"/>
+            </apex:column>
+        </apex:pageBlockTable>
+
+    </apex:pageBlock>
+
+    </td>
+  </tr>
+  </table>
+      </apex:pageBlock>
+<apex:outputPanel id="details"  >
+  <apex:pageBlock title="Details" rendered="{!showDetailssection}" >
+      
+      <apex:pageBlockTable value="{!contactDetails}" var="c"   >
+                 <apex:column value="{!c.firstname}" />
+                 <apex:column value="{!c.lastname}" />
+                 <apex:column value="{!c.Account.name}" />   
+        
+             </apex:pageBlockTable>
+  </apex:pageBlock>    
+</apex:outputPanel>
+  
+
+  </apex:form>
+
+</apex:page>

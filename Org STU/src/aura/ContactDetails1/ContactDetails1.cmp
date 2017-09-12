@@ -1,0 +1,17 @@
+<aura:component controller="ContactController" implements="force:appHostable,flexipage:availableForAllPageTypes">
+
+    <aura:attribute name="contact" type="Contact" default="{'sobjectType': 'Contact'}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <!--<aura:handler event="aura:locationChange" action="{!c.locationChange}"/>-->
+    
+    <p>Darshnaa</p>
+    <div >
+        <h1>{!v.contact.Name}</h1>
+        <h3>{!v.contact.Account.Name}</h3>
+        <h3>{!v.contact.Title}</h3>
+        <p>{!v.contact.Phone}</p>
+        {!v.contact.MobilePhone}
+    </div>
+    
+</aura:component>

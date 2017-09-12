@@ -1,0 +1,6 @@
+<aura:component controller="HelloWorldController" implements="flexipage:availableForAllPageTypes" access="global" >
+	<aura:attribute name="greeting" type="String" default="TCSers" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    Hello {!v.greeting}!!!
+</aura:component>

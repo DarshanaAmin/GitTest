@@ -1,0 +1,23 @@
+<aura:component controller="ContactController" implements="force:appHostable,flexipage:availableForAllPageTypes">
+    <ltng:require styles='/resource/bootstrap/' />
+    <aura:attribute name="contacts" type="Contact[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="c:SearchKeyChange" action="{!c.searchKeyChange}"/>
+    <aura:registerEvent name="NavigateToContactDetail" type="c:NavigateToContactDetail" />
+
+    <ul class="list-group">
+        <aura:iteration items="{!v.contacts}" var="contact">
+            <li class="list-group-item">
+                <!--uses the Contact ID to set the link to the detail page of each contact record
+                <a href="{! '#contact/' + contact.Id }"> -->
+                <a href="#" aura:id="{!contact.Id}" onclick="{!c.redirectContactDetail}" class="list-group-item">
+                <!--<a data-index="{!contact}" href="javascript:void(0);" onclick="{!c.redirectContactDetail}">-->
+                    <p>{!contact.Name}</p>
+                    <p>{!contact.Phone}</p>
+                </a>
+                <!--</a>-->
+            </li>
+        </aura:iteration>
+    </ul>
+
+</aura:component>

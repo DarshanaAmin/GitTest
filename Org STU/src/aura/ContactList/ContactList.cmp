@@ -1,0 +1,26 @@
+<aura:component controller="ContactController" implements="force:appHostable,flexipage:availableForAllPageTypes">
+    <!-- Load the External styling resource -->
+    <ltng:require styles='/resource/bootstrap/' />
+    
+    <!-- Attribute definition -->
+    <aura:attribute name="contacts" type="Contact[]"/>
+    
+    <!-- doInit function on page load -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <!-- Handle the search event -->
+    <aura:handler event="c:SearchKeyChange" action="{!c.searchKeyChange}"/>
+    
+    <ul class="list-group">
+        <!-- Iterate over the Contact List -->
+        <aura:iteration items="{!v.contacts}" var="contact">
+            <li class="list-group-item">
+                <a href="{! '#contact/' + contact.Id }">
+                    <p>{!contact.Name}</p>
+                    <p>{!contact.Account.Name}</p>
+                </a>
+            </li>
+        </aura:iteration>
+    </ul>
+
+</aura:component>
